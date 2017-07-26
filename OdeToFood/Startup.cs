@@ -56,9 +56,14 @@ namespace OdeToFood
                     ExceptionHandler = context => context.Response.WriteAsync("Ooooops! Something's gone sideways.")
                     //if the app is ran in a non-dev environment, this will return a more user-friendly error message
                 });
-  
-           
+ 
             }
+
+            app.UseFileServer(); //this is essentially a combination of UseDefaultFiles and UseStaticFiles
+
+            //app.UseDefaultFiles(); //middleware that looks at incoming requests and sees if there's a default file that matches that request. index.html is one 
+            //of the default filenames out of the box so this will serve index.html to any root request 
+            //app.UseStaticFiles(); //middleware to serve static files. by default it looks for files in the wwwroot folder
 
             app.UseWelcomePage("/welcome"); //sets the middleware to only respond to the /welcome http adddress
             //you could also set it up like.....
