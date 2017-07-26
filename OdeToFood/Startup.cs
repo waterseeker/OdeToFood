@@ -35,7 +35,8 @@ namespace OdeToFood
             services.AddSingleton<IGreeter, Greeter>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // This method gets called by the runtime. 
+        //Use this method to configure the HTTP request pipeline.
         public void Configure(
             IApplicationBuilder app, 
             IHostingEnvironment env, 
@@ -48,6 +49,7 @@ namespace OdeToFood
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseWelcomePage("/welcome"); //sets the middleware to only respond to the /welcome http adddress
 
             app.Run(async (context) =>
             {
