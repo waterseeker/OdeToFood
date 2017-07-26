@@ -65,22 +65,7 @@ namespace OdeToFood
             //of the default filenames out of the box so this will serve index.html to any root request 
             //app.UseStaticFiles(); //middleware to serve static files. by default it looks for files in the wwwroot folder
 
-            app.UseWelcomePage("/welcome"); //sets the middleware to only respond to the /welcome http adddress
-            //you could also set it up like.....
-            //app.UseWelcomePage(new WelcomePageOptions
-            //{
-            //    Path = "/welcome"
-            //});
-            //and this would do the same thing, only respond to the /welcome path. 
-
-            app.Run(async (context) =>
-            {
-                //var message = Configuration["Greeting"]; 
-                var message = greeter.GetGreeting();
-                await context.Response.WriteAsync(message);
-
-                //await context.Response.WriteAsync("Hello world!!!!!!!!");
-            });
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
