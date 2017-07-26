@@ -47,9 +47,26 @@ namespace OdeToFood
 
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage(); // middleware that will display a ui with troubleshootin info if there is an unhandled exception
             }
+            else
+            {
+                app.UseExceptionHandler(new ExceptionHandlerOptions
+                {
+                    ExceptionHandler = context => context.Response.WriteAsync("Ooooops! Something's gone sideways.")
+                    //if the app is ran in a non-dev environment, this will return a more user-friendly error message
+                });
+  
+           
+            }
+
             app.UseWelcomePage("/welcome"); //sets the middleware to only respond to the /welcome http adddress
+            //you could also set it up like.....
+            //app.UseWelcomePage(new WelcomePageOptions
+            //{
+            //    Path = "/welcome"
+            //});
+            //and this would do the same thing, only respond to the /welcome path. 
 
             app.Run(async (context) =>
             {
