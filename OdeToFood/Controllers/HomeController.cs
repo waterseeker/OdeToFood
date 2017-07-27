@@ -64,11 +64,7 @@ namespace OdeToFood.Controllers
                                                                                    //grabbing the id from the newRestaurante and redirecting the user to the details page of the newRestaurant
                                                                                    //to avoid double-posting. 
             }
-            else
-            {
-                return View();
-            }
-            
-        }
+                return View();         
+       }
     }
 }
