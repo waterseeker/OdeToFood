@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+
 
 namespace OdeToFood.Controllers
 {
+
+    [Route("about")] //first part of http request is /about/
     public class AboutController
     {
-        public string Phone()
+        [Route("")] //action in http request is blank
+        public string Phone() //responds to the phone action on the http request of the about page... /about/phone
         {
             return "1-555-555-5555";
         }
 
-        public string Address()
+        public string Address() // /about/address
         {
             return "USA";
         }
