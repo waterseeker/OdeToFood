@@ -1,5 +1,12 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model OdeToFood.Models.Restaurant
+<!--a directive to set the type of the Model we are calling in the html. Doing this will allow intellisense to work.-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>OdeToFood</title>
+</head>
+<body>
+    <h1>@Model.Name</h1>
+    <div>This is the home page</div>
+</body>
+</html>
