@@ -10,7 +10,7 @@
         {
             <div>
                 @Html.LabelFor(m => m.Name) <!--creates a label for the input field based on the model prop called.-->
-                @Html.TextBoxFor(m => m.Name) <!--will write out an input tag and set properties according to info that's in the model-->
+                @Html.EditorFor(m => m.Name) 
             </div>
             <div>
                 @Html.LabelFor(m => m.Cuisine)
