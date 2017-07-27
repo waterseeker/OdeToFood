@@ -60,7 +60,9 @@ namespace OdeToFood.Controllers
 
             newRestaurant = _restaurantData.Add(newRestaurant);
 
-            return View("Details", newRestaurant);
+            return RedirectToAction("Details", new { id = newRestaurant.Id }); //second param is a route option, here it is 
+            //grabbing the id from the newRestaurante and redirecting the user to the details page of the newRestaurant
+            //to avoid double-posting. 
         }
     }
 }
