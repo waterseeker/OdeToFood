@@ -9,13 +9,17 @@ namespace OdeToFood.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController(IRestaurantData restaurant) //give me an instance of the IRestaurantData called restaurant
-        {
+        private IRestaurantData _restaurantData;
 
+        public HomeController(IRestaurantData restaurantData) //give me an instance of the IRestaurantData called restaurantData
+        {
+            _restaurantData = restaurantData;
         }
+
         public IActionResult Index()
         {
-            var model = new Restaurant { Id = 1, Name = "The House of Kobe" }; //instantiate a restaurant with an id 1 and name The House of Kobe
+            var model = _restaurantData.GetAll();
+            //var model = new Restaurant { Id = 1, Name = "The House of Kobe" }; //instantiate a restaurant with an id 1 and name The House of Kobe
 
             return View(model);
 
