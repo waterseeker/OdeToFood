@@ -18,7 +18,7 @@ namespace OdeToFood.Entities
     {
         public int Id { get; set; }
 
-        [Required, MaxLength(80]
+        [Required, MaxLength(80)]
         [Display(Name ="Restaurant Name"] //on the html, don't display the text "Name" on the input, display "Restaurant Name"
         public string Name { get; set; }
         public CuisineType Cuisine { get; set; }
