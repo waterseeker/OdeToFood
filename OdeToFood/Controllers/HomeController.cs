@@ -54,15 +54,19 @@ namespace OdeToFood.Controllers
             //we made a separate view model for this to make sure we didn't allow the end user access to any properties we don't
             //want editable on the actual Restaurant entity. 
         {
-            var newRestaurant = new Restaurant();
-            newRestaurant.Cuisine = model.Cuisine; //the cuisine type is = to the incoming restaurant cuisine
-            newRestaurant.Name = model.Name; //the restaurant name is = to the incoming restaurant name
+            if (ModelState.IsValid)
+            {
+                var newRestaurant = new Restaurant();
+                newRestaurant.Cuisine = model.Cuisine; //the cuisine type is = to the incoming restaurant cuisine
+                newRestaurant.Name = model.Name; //the restaurant name is = to the incoming restaurant name
 
-            newRestaurant = _restaurantData.Add(newRestaurant);
+                newRestaurant = _restaurantData.Add(newRestaurant);
+            }
 
             return RedirectToAction("Details", new { id = newRestaurant.Id }); //second param is a route option, here it is 
-            //grabbing the id from the newRestaurante and redirecting the user to the details page of the newRestaurant
-            //to avoid double-posting. 
+                                                                                   //grabbing the id from the newRestaurante and redirecting the user to the details page of the newRestaurant
+                                                                                   //to avoid double-posting. 
+            
         }
     }
 }
