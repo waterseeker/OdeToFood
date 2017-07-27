@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
 
 /// <summary>
 /// Summary description for Class1
 /// </summary>
 namespace OdeToFood.Controllers
 {
-    public class HomeController
+    public class HomeController : Controller
     {
-        public string Index()
+        public ContentResult Index()
         {
-            return "Hello, from the HomeController!";
+            return Content ("Hello, from the HomeController!");
         }
     }
 }
