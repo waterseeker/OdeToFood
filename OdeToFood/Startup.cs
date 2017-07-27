@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Routing;
+using OdeToFood.Services;
 
 namespace OdeToFood
 {
@@ -34,7 +35,10 @@ namespace OdeToFood
         {
             services.AddMvc(); //adds default mvc services
             services.AddSingleton(Configuration);
-            services.AddSingleton<IGreeter, Greeter>();
+            services.AddSingleton<IGreeter, Greeter>(); //AddSingleton tells the framework that there will only be one instance of Greeter
+            //throughout the app
+            services.AddScoped<IRestaurantData, InMemoryRestaurantData>(); //AddScoped tells the framework there should be one
+            //instance of the service for each http request. 
         }
 
         // This method gets called by the runtime. 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OdeToFood
+namespace OdeToFood.Services
 {
 
     public interface IGreeter //describes the capabilities of every greeter
