@@ -37,7 +37,7 @@ namespace OdeToFood
             services.AddSingleton(Configuration);
             services.AddSingleton<IGreeter, Greeter>(); //AddSingleton tells the framework that there will only be one instance of Greeter
             //throughout the app
-            services.AddScoped<IRestaurantData, InMemoryRestaurantData>(); //AddScoped tells the framework there should be one
+            services.AddScoped<IRestaurantData, SqlRestaurantData>(); //AddScoped tells the framework there should be one
             //instance of the service for each http request. 
         }
 
