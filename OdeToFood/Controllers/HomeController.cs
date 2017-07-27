@@ -50,6 +50,8 @@ namespace OdeToFood.Controllers
             return View();
         }
         [HttpPost] //route constraint that tells the browser to use this signature for a post request. 
+        [ValidateAntiForgeryToken] //checks to make sure the form is coming from a form we gave to the user
+        //helps prevent cross-site forgeries. 
         public IActionResult Create (RestaurantEditViewModel model) //this signature is where the form posts to
             //we made a separate view model for this to make sure we didn't allow the end user access to any properties we don't
             //want editable on the actual Restaurant entity. 
