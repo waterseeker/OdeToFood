@@ -41,7 +41,7 @@ namespace OdeToFood
             //throughout the app
             services.AddScoped<IRestaurantData, SqlRestaurantData>(); //AddScoped tells the framework there should be one
             //instance of the service for each http request. 
-            services.AddDbContext<OdeToFoodDbContext>(options => options.UseSqlServer(""));
+            services.AddDbContext<OdeToFoodDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OdeToFood")));
         }
 
         // This method gets called by the runtime. 
