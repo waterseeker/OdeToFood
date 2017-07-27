@@ -6,7 +6,15 @@
     <title>OdeToFood</title>
 </head>
 <body>
-    <h1>@Model.Name</h1>
-    <div>This is the home page</div>
+    <h1>Welcome!</h1>
+   
+    <table>
+        @foreach (var restaurant in Model)
+        {
+        <tr>
+            <td></td>
+        </tr>
+        }
+    </table>
 </body>
 </html>
