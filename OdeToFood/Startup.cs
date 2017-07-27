@@ -81,7 +81,7 @@ namespace OdeToFood
             // /Home/Index
             // a ? means the param is optional
             routeBuilder.MapRoute("Default",
-                "{controller}/{action}/{id?}");
+                "{controller=Home}/{action=Index}/{id?}");
         }
     }
 }
