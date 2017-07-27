@@ -37,7 +37,10 @@ namespace OdeToFood.Controllers
         public IActionResult Details(int id)
         {
             var model = _restaurantData.Get(id);
-
+            if(model == null)
+            {
+                return RedirectToAction("Index"); //if there's an invalid http request redirect the user back to the index page. 
+            }
             return View(model);
         }
     }
