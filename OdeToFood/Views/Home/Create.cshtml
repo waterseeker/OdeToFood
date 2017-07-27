@@ -1,4 +1,5 @@
-﻿@model OdeToFood.Entities.Restaurant
+﻿@using OdeToFood.Entities
+@model Restaurant
 
 <div>
 
@@ -8,7 +9,15 @@
         @using (Html.BeginForm()) //html helper to make a form
         {
             <div>
+                @Html.LabelFor(m => m.Name) <!--creates a label for the input field based on the model prop called.-->
                 @Html.TextBoxFor(m => m.Name) <!--will write out an input tag and set properties according to info that's in the model-->
+            </div>
+            <div>
+                @Html.LabelFor(m => m.Cuisine)
+                @Html.DropDownListFor(m => m.Cuisine, Html.GetEnumSelectList(typeof(CuisineType)))
+            </div>
+            <div>
+                <input type="submit" value="Save!" />
             </div>
 
         }
