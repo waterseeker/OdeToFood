@@ -12,7 +12,11 @@
         @foreach (var restaurant in Model.Restaurants)
         {
         <tr>
-            <td>@restaurant.Id</td>
+            <td>
+                <!--<a href="/home/details/@restaurant.Id">Details</a> this is one way to make a dynamic href -->
+                @Html.ActionLink("View", "Details", new { id = restaurant.Id}) 
+                <!--the first param is the text of the link, the second is the action on the http request, the third is a route param-->
+            </td>
             <td>@restaurant.Name</td>
         </tr>
         }
