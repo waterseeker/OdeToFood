@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OdeToFood.Entities;
 using OdeToFood.Services;
 using OdeToFood.ViewModels;
 
@@ -43,15 +44,23 @@ namespace OdeToFood.Controllers
             }
             return View(model);
         }
-
+        [HttpGet] //route constraint. this tells the browser to use this signature for a get request
         public IActionResult Create () //this signature of the Create returns a View with a form 
         {
             return View();
         }
-
-        public IActionResult Create () //this signature is where the form posts to
+        [HttpPost] //route constraint that tells the browser to use this signature for a post request. 
+        public IActionResult Create (RestaurantEditViewModel model) //this signature is where the form posts to
+            //we made a separate view model for this to make sure we didn't allow the end user access to any properties we don't
+            //want editable on the actual Restaurant entity. 
         {
+            var newRestaurant = new Restaurant();
+            newRestaurant.Cuisine = model.Cuisine; //the cuisine type is = to the incoming restaurant cuisine
+            newRestaurant.Name = model.Name; //the restaurant name is = to the incoming restaurant name
 
+            newRestaurant = _restaurantData.Add(newRestaurant);
+
+            return View("Details", newRestaurant);
         }
     }
 }

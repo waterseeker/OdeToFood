@@ -1,6 +1,7 @@
 ﻿using OdeToFood.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace OdeToFood.Services
 {
@@ -9,11 +10,12 @@ namespace OdeToFood.Services
     {
         IEnumerable<Restaurant> GetAll();
         Restaurant Get(int id);
+        Restaurant Add(Restaurant newRestaurant);
     }
 
     public class InMemoryRestaurantData : IRestaurantData
     {
-        public InMemoryRestaurantData()
+        static InMemoryRestaurantData()
         {
             _restaurants = new List<Restaurant>
             {
@@ -32,7 +34,16 @@ namespace OdeToFood.Services
             return _restaurants.FirstOrDefault(r => r.Id == id);
         }
 
-        List<Restaurant> _restaurants;
+        public Restaurant Add(Restaurant newRestaurant)
+        {
+            newRestaurant.Id = _restaurants.Max(r => r.Id) + 1; //look at the restaurant list length and add one to it and assign that value
+            //to the id prop of the new restaurant. 
+            _restaurants.Add(newRestaurant); //add the new restaurant to the list. 
+            return newRestaurant;
+        }
+
+        static List<Restaurant> _restaurants; //static means there will only be once instance on this list for the entire app and we'll
+        //always be looking at the same list of restaurants. 
 
     }
 }
