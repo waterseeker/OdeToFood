@@ -11,10 +11,12 @@
             <div>
                 @Html.LabelFor(m => m.Name) <!--creates a label for the input field based on the model prop called.-->
                 @Html.EditorFor(m => m.Name) 
+                @Html.ValidationMessageFor(m => m.Name) <!-- show validation errors for name-->
             </div>
             <div>
                 @Html.LabelFor(m => m.Cuisine)
                 @Html.DropDownListFor(m => m.Cuisine, Html.GetEnumSelectList(typeof(CuisineType)))
+                @Html.ValidationMessageFor(m => m.Cuisine) <!--show validation errors for cuisine-->
             </div>
             <div>
                 <input type="submit" value="Save!" />
