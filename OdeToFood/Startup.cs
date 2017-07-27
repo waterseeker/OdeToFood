@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Routing;
 using OdeToFood.Services;
+using OdeToFood.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace OdeToFood
 {
@@ -39,6 +41,7 @@ namespace OdeToFood
             //throughout the app
             services.AddScoped<IRestaurantData, SqlRestaurantData>(); //AddScoped tells the framework there should be one
             //instance of the service for each http request. 
+            services.AddDbContext<OdeToFoodDbContext>(options => options.UseSqlServer(""));
         }
 
         // This method gets called by the runtime. 
