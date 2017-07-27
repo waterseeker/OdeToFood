@@ -44,9 +44,14 @@ namespace OdeToFood.Controllers
             return View(model);
         }
 
-        public IActionResult Create ()
+        public IActionResult Create () //this signature of the Create returns a View with a form 
         {
             return View();
+        }
+
+        public IActionResult Create () //this signature is where the form posts to
+        {
+
         }
     }
 }
