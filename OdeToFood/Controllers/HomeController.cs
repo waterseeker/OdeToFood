@@ -33,5 +33,12 @@ namespace OdeToFood.Controllers
 
             //return Content ("Hello, from the HomeController!");
         }
+
+        public IActionResult Details(int id)
+        {
+            var model = _restaurantData.Get(id);
+
+            return View(model);
+        }
     }
 }
