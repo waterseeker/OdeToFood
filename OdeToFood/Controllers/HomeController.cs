@@ -44,6 +44,18 @@ namespace OdeToFood.Controllers
             }
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var model = _restaurantData.Get(id);
+            if(model == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
         [HttpGet] //route constraint. this tells the browser to use this signature for a get request
         public IActionResult Create () //this signature of the Create returns a View with a form 
         {

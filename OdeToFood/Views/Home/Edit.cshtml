@@ -1,0 +1,33 @@
+﻿
+@model Restaurant
+
+@{ 
+    ViewBag.Title = $"Edit { Model.Name}";
+}
+
+<div>
+
+    <h1>Editing: @Model.Name</h1>
+    <div>
+        <form method="post" asp-antiforgery="true">
+            <div>
+                <label asp-for="Name"></label>
+                <input asp-for="Name"/>
+                <span asp-validation-for="Name"></span>                
+            </div>
+            <div>
+                <label asp-for="Cuisine"></label>
+                @Html.DropDownListFor(m => m.Cuisine, Html.GetEnumSelectList(typeof(CuisineType)))
+                <select asp-for="Cuisine" asp-items>
+                    <option></option>
+                </select>
+                @Html.ValidationMessageFor(m => m.Cuisine) <!--show validation errors for cuisine-->
+            </div>
+            <div>
+                <input type="submit" value="Save!" />
+            </div>
+        </form>
+
+    </div>
+
+</div>
