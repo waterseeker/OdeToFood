@@ -3,11 +3,10 @@
 
 @{ 
     ViewBag.Title = "Home";
-
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Welcome!</h1>
-<h3>@Model.CurrentMessage</h3>
 <table>
 
     @foreach (var restaurant in Model.Restaurants)
@@ -22,3 +21,7 @@
         </tr>
     }
 </table>
+
+@section footer {
+<h3>@Model.CurrentMessage</h3>
+}
