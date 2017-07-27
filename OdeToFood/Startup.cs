@@ -80,6 +80,9 @@ namespace OdeToFood
             // /controllerName/Action
             // /Home/Index
             // a ? means the param is optional
+            // the = sets up a default value for the route. 
+            //this route config will make any request to the root use the Home controller, 
+            //and root/Home, and any root/Home/Index use the Home controller as well. 
             routeBuilder.MapRoute("Default",
                 "{controller=Home}/{action=Index}/{id?}");
         }
