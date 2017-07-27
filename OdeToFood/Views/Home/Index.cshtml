@@ -1,25 +1,24 @@
 ﻿@model OdeToFood.ViewModels.HomePageViewModel
 <!--a directive to set the type of the Model we are calling in the html. Doing this will allow intellisense to work.-->
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>OdeToFood</title>
-</head>
-<body>
-    <h1>Welcome!</h1>
-   <h3>@Model.CurrentMessage</h3>
-    <table>
-        @foreach (var restaurant in Model.Restaurants)
-        {
+@{ 
+    ViewBag.Title = "Home";
+
+}
+
+<h1>Welcome!</h1>
+<h3>@Model.CurrentMessage</h3>
+<table>
+
+    @foreach (var restaurant in Model.Restaurants)
+    {
         <tr>
             <td>
                 <!--<a href="/home/details/@restaurant.Id">Details</a> this is one way to make a dynamic href -->
-                @Html.ActionLink("View", "Details", new { id = restaurant.Id}) 
+                @Html.ActionLink("View", "Details", new { id = restaurant.Id })
                 <!--the first param is the text of the link, the second is the action on the http request, the third is a route param-->
             </td>
             <td>@restaurant.Name</td>
         </tr>
-        }
-    </table>
-</body>
-</html>
+    }
+</table>
