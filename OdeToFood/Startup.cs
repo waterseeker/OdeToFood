@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Routing;
 
 namespace OdeToFood
 {
@@ -66,7 +67,21 @@ namespace OdeToFood
             //of the default filenames out of the box so this will serve index.html to any root request 
             //app.UseStaticFiles(); //middleware to serve static files. by default it looks for files in the wwwroot folder
 
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(ConfigureRoutes);
+            //when the mvc inspects the request and sees that it doesn't match any of the routes we've configured, it'll 
+            //go to the next middleware.
+            //middlewhare where given an http context
+            app.Run(ctx => ctx.Response.WriteAsync("Not found"));
+        }
+
+        private void ConfigureRoutes(IRouteBuilder routeBuilder)
+        {
+            //first param is a name, 2nd is a schema for the route
+            // /controllerName/Action
+            // /Home/Index
+            // a ? means the param is optional
+            routeBuilder.MapRoute("Default",
+                "{controller}/{action}/{id?}");
         }
     }
 }
