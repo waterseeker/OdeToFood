@@ -12,17 +12,19 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="/">OdeToFood</a>
             </div>
+            <div class="navbar-right">
+                @await Component.InvokeAsync("LoginLogout")
+            </div>
         </div>
     </nav>
-    <div>
-        @await Component.InvokeAsync("LoginLogout")
-    </div>
-    <div>
+
+    <div class="container">
         @RenderBody()
+        <footer>
+            @RenderSection("footer", required: false)
+            @await Component.InvokeAsync("Greeting")
+        </footer>
     </div>
-    <footer>
-        @RenderSection("footer", required: false)
-        @await Component.InvokeAsync("Greeting")
-    </footer>
+
 </body>
 </html>
