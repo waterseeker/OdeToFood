@@ -77,9 +77,9 @@ namespace OdeToFood
             //of the default filenames out of the box so this will serve index.html to any root request 
             //app.UseStaticFiles(); //middleware to serve static files. by default it looks for files in the wwwroot folder
 
-            app.UseStaticFiles()
+            app.UseNodeModules(env.ContentRootPath);
 
-            app.UseNodeModules();
+            app.UseIdentity();
 
             app.UseMvc(ConfigureRoutes);
             //when the mvc inspects the request and sees that it doesn't match any of the routes we've configured, it'll 
