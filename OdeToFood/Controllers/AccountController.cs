@@ -1,10 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using OdeToFood.Entities;
 using OdeToFood.ViewModels;
+using System.Threading.Tasks;
 
 namespace OdeToFood.Controllers
 {
     public class AccountController : Controller
     {
+        private UserManager<User> _userManager;
+        private SignInManager<User> _signInManager;
+
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -12,9 +24,26 @@ namespace OdeToFood.Controllers
         }
         
         [HttpPost, ValidateAntiForgeryToken]
-        public IActionResult Register(RegisterUserViewModel model)
+        public async Task<IActionResult> Register(RegisterUserViewModel model)
         {
-
+            if(ModelState.IsValid)
+            {
+                var user = new User { UserName = model.Username };
+                var createResult = await _userManager.CreateAsync(user, model.Password);
+                if (createResult.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, false);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    foreach(var error in createResult.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+            }
+            return View();
         }
     }
 }
