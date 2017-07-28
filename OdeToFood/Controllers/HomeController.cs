@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OdeToFood.Entities;
 using OdeToFood.Services;
 using OdeToFood.ViewModels;
@@ -8,6 +9,7 @@ using OdeToFood.ViewModels;
 /// </summary>
 namespace OdeToFood.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private IRestaurantData _restaurantData;
@@ -18,7 +20,7 @@ namespace OdeToFood.Controllers
             _restaurantData = restaurantData; //saves the restaurantdata so we can consume it elsewhere
 
         }
-
+        [AllowAnonymous] //makes an exception to the Authorize tag so anonymous users can still see the index of restaurants. 
         public IActionResult Index()
         {
             var model = new HomePageViewModel(); //sets the model to an instance of the HomePageViewModel
@@ -33,7 +35,7 @@ namespace OdeToFood.Controllers
 
             //return Content ("Hello, from the HomeController!");
         }
-
+        
         public IActionResult Details(int id)
         {
             var model = _restaurantData.Get(id);
