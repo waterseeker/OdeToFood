@@ -9,7 +9,7 @@
 
     <h1>Editing: @Model.Name</h1>
     <div>
-        <form method="post" asp-antiforgery="true">
+        <form method="post" asp-antiforgery="true"> <!--makes an antiforgery token generated for the form-->
             <div>
                 <label asp-for="Name"></label>
                 <input asp-for="Name"/>
@@ -17,11 +17,9 @@
             </div>
             <div>
                 <label asp-for="Cuisine"></label>
-                @Html.DropDownListFor(m => m.Cuisine, Html.GetEnumSelectList(typeof(CuisineType)))
-                <select asp-for="Cuisine" asp-items>
-                    <option></option>
+                <select asp-for="Cuisine" asp-items="@Html.GetEnumSelectList(typeof(CuisineType))">
                 </select>
-                @Html.ValidationMessageFor(m => m.Cuisine) <!--show validation errors for cuisine-->
+                <span asp-validation-for="Cuisine"></span> <!--show validation errors for cuisine-->
             </div>
             <div>
                 <input type="submit" value="Save!" />
