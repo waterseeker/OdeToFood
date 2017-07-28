@@ -65,7 +65,7 @@ namespace OdeToFood.Controllers
             {
                 restaurant.Cuisine = model.Cuisine;
                 restaurant.Name = model.Name;
-
+                _restaurantData.Commit();
                 return RedirectToAction("Details", new { id = restaurant.Id });
             }
             return View(restaurant);
@@ -90,9 +90,11 @@ namespace OdeToFood.Controllers
                 newRestaurant.Cuisine = model.Cuisine; //the cuisine type is = to the incoming restaurant cuisine
                 newRestaurant.Name = model.Name; //the restaurant name is = to the incoming restaurant name
                 newRestaurant = _restaurantData.Add(newRestaurant);
+                _restaurantData.Commit();
+
                 return RedirectToAction("Details", new { id = newRestaurant.Id }); //second param is a route option, here it is 
-                                                                                   //grabbing the id from the newRestaurante and redirecting the user to the details page of the newRestaurant
-                                                                                   //to avoid double-posting. 
+                //grabbing the id from the newRestaurante and redirecting the user to the details page of the newRestaurant
+                //to avoid double-posting. 
             }
                 return View();         
        }

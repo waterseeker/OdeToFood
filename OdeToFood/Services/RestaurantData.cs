@@ -11,6 +11,7 @@ namespace OdeToFood.Services
         IEnumerable<Restaurant> GetAll();
         Restaurant Get(int id);
         Restaurant Add(Restaurant newRestaurant);
+        void Commit();
     }
 
     public class SqlRestaurantData : IRestaurantData
@@ -25,8 +26,12 @@ namespace OdeToFood.Services
         public Restaurant Add(Restaurant newRestaurant)
         {
             _context.Add(newRestaurant);
-            _context.SaveChanges(); //saves changes to the dbContext. 
             return newRestaurant;
+        }
+
+        public void Commit()
+        {
+            _context.SaveChanges();
         }
 
         public Restaurant Get(int id)
@@ -69,8 +74,14 @@ namespace OdeToFood.Services
             return newRestaurant;
         }
 
-        static List<Restaurant> _restaurants; //static means there will only be once instance on this list for the entire app and we'll
-        //always be looking at the same list of restaurants. 
+        public void Commit()
+        { }
+            //since the in memory is not transactional, this is really a no op or no operation. if you set a prop
+            //on an inmemory data source, that change is already committed. 
 
+            static List<Restaurant> _restaurants; //static means there will only be once instance on this list for the entire app and we'll
+                                                  //always be looking at the same list of restaurants. 
+
+        
     }
 }
