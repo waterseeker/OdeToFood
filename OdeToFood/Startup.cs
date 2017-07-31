@@ -85,7 +85,7 @@ namespace OdeToFood
             //when the mvc inspects the request and sees that it doesn't match any of the routes we've configured, it'll 
             //go to the next middleware.
             //middlewhare where given an http context
-            app.Run(ctx => ctx.Response.WriteAsync("Not found"));
+            //app.Run(ctx => ctx.Response.WriteAsync("Not found"));
         }
 
         private void ConfigureRoutes(IRouteBuilder routeBuilder)
